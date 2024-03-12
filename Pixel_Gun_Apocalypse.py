@@ -2,39 +2,53 @@
 # Author : Fabián Andrés Cortés Tróchez
 # Date: 2024 - 03 - 12
 
+import random
+random.seed(2024)
+
+# List with characters representing a legal weapon in the game
 weapons = [".", "-", "+", "*", "T", "Y", "|", "W", "X", "M"]
 
+# for helping input validation
 def selection_is_legal(string: str)-> bool:
-    """ check if all weapons selected by a team are in the list of allowed weapons """
-    for character in string:
-        if character not in weapons:
+    """ Validates if all elements in a sequence belong to our 'weapons' list """
+    for character in string: # for all characters in string
+        if character.casefold() not in [weapon.casefold() for weapon in weapons]:
             return False
     return True
 
-def select_weapon()->str:
-    """ gather a set of 6 weapons for a given time """
-    print("Enter your selection of weapons.")
+# request user to select 6 weapons
+def select_weapon(team:str)->str:
+    """ gather a set of 6 weapons for a given team """
+    print(f"Select the 6 weapons used by {team}.")
     while True:
         weapon_set = input()
         if len(weapon_set) == 6:
-            if selection_is_legal:
+            if selection_is_legal(weapon_set):
                 return weapon_set
             else: 
                 print("One or more of the selected weapons are invalid. Please try again.")
-        else: 
-            print("The amount of weapons has to be 6 in total.")
+        elif len(weapon_set) < 6:
+            print("You are selecting less than 6 weapons. Please try again.")
+        else:
+            print("You are selecting more than 6 weapons. Please try again.") 
 
-def blinded_watchmaker(shifts: int):
-    """ generate a random sequence of effective weapons for each clock change """
+def blinded_watchmaker(shifts: int)->str:
+    """ 
+    Returns a sequence of random weapons for each clock change
     
-
-           
+    Arguments:
+        shifts: will set the amount of turns (the lenght of the resulting string)
+    """
+    "".join()
 
 
 def testing():
-    print("Hello, World!")
+    team_1 = select_weapon("team_1")
+    print(team_1,)
     
     
+    
+    # print("Hello, World!")
     
 def main():
     print("Hello, World!")

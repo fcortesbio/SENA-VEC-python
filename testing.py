@@ -19,5 +19,19 @@ class Test_selection_is_legal(unittest.TestCase):
         self.assertTrue(selection_is_legal('twtmwm'))  # Lowercase
         self.assertTrue(selection_is_legal('TWTMwM'))  # Mixed case
 
+class Test_select_weapon(unittest.TestCase):
+    def test_valid_input(self):
+        # Test for valid input
+        # Assuming we're providing input interactively, we can use unittest.mock.patch
+        with unittest.mock.patch('builtins.input', side_effect=['TWTMWM']):
+            self.assertEqual(select_weapon("team_1"), 'TWTMWM')
+
+    def test_invalid_input(self):
+        # Test invalid input
+        # Assuming we're providing input interactively, we can use unittest.mock.patch
+        with unittest.mock.patch('builtins.input', side_effect=['TWTM!M', 'TWTMWM']):
+            self.assertEqual(select_weapon("team_1"), 'TWTMWM')  # Input with special character should be rejected
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -2,6 +2,17 @@
 # Author : Fabián Andrés Cortés Tróchez
 # Date: 2024 - 03 - 12
 
+""" 
+Scenario: 
+In this game two 6-player-teams battle against each other.
+Each player picks a weapon, represented by characters in the list below. Each player will fight all players from the other team.
+Weapons misaligned, so players can only shoot upwards, hoping to luckily inflict damage to the current opponent until the time is over.
+
+
+
+"""
+
+
 import random
 random.seed(2024)
 
@@ -19,7 +30,7 @@ def selection_is_legal(string: str)-> bool:
 # request user to select 6 weapons
 def select_weapon(team:str)->str:
     """ gather a set of 6 weapons for a given team """
-    print(f"Select the 6 weapons used by {team}.")
+    print(f"Select the 6 weapons to be used by {team}.")
     while True:
         weapon_set = input()
         if len(weapon_set) == 6:
@@ -41,12 +52,7 @@ def blinded_watchmaker(shifts: int)->str:
     """
     "".join()
 
-
-def testing():
-    team_1 = select_weapon("team_1")
-    print(team_1,)
-    
-    
+  
     
     # print("Hello, World!")
     
@@ -54,7 +60,6 @@ def main():
     print("Hello, World!")
     
 if __name__ == "__main__":
-    testing()
     # main()
 
 

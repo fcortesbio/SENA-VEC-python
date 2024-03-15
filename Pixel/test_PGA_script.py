@@ -1,23 +1,22 @@
 import unittest
-from Pixel_Gun_Apocalypse import * # import all fuctions
+from PGA_script import * # import all fuctions
 # weapons = [".", "-", "+", "*", "T", "Y", "|", "W", "X", "M"]
 
-
-class Test_selection_is_legal(unittest.TestCase):
+class Test_legal_select(unittest.TestCase):
     def test_valid_selection(self):
         # Test a valid selection
-        self.assertTrue(selection_is_legal('TWTMWM'))
+        self.assertTrue(legal_select('TWTMWM'))
 
     def test_invalid_selection(self):
         # Test an invalid selection
-        self.assertFalse(selection_is_legal('TWTMWM!'))  # Special characte r
-        self.assertFalse(selection_is_legal('TWTMWMN'))  # Extra character
-        self.assertFalse(selection_is_legal(''))  # Empty selection
+        self.assertFalse(legal_select('TWTMWM!'))  # Special characte r
+        self.assertFalse(legal_select('TWTMWMN'))  # Extra character
+        self.assertFalse(legal_select(''))  # Empty selection
 
     def test_case_insensitive(self):
         # Test case insensitivity
-        self.assertTrue(selection_is_legal('twtmwm'))  # Lowercase
-        self.assertTrue(selection_is_legal('TWTMwM'))  # Mixed case
+        self.assertTrue(legal_select('twtmwm'))  # Lowercase
+        self.assertTrue(legal_select('TWTMwM'))  # Mixed case
 
 class Test_select_weapon(unittest.TestCase):
     def test_valid_input(self):

@@ -2,32 +2,27 @@
 # Author : Fabián Andrés Cortés Tróchez
 # Date: 2024 - 03 - 12
 
-""" 
-
-"""
-
 import random
-random.seed(2024)
+random.seed(1997) # for reproducibility
 
 # List with characters representing a legal weapon in the game
 weapons = [".", "-", "+", "*", "T", "Y", "|", "W", "X", "M"]
 
-# for helping input validation
-def selection_is_legal(string: str)-> bool:
-    """ Validates if all elements in a sequence belong to our 'weapons' list """
+def legal_select(string: str)-> bool:
+    # must validate that each character in a string belongs to the list '0weapons'
     for character in string: # for all characters in string
         if character.casefold() not in [weapon.casefold() for weapon in weapons]:
             return False
     return True
 
 # request user to select 6 weapons
-def select_weapon(team:str)->str:
-    """ gather a set of 6 weapons for a given team """
+def input_weapon(team:str)->str:
+    # must input a string representing a set of 6 'weapons'
     print(f"Select the 6 weapons to be used by {team}.")
     while True:
         weapon_set = input()
         if len(weapon_set) == 6:
-            if selection_is_legal(weapon_set):
+            if legal_select(weapon_set):
                 return weapon_set
             else: 
                 print("One or more of the selected weapons are invalid. Please try again.")
@@ -36,25 +31,21 @@ def select_weapon(team:str)->str:
         else:
             print("You are selecting more than 6 weapons. Please try again.") 
 
-def blinded_watchmaker(shifts: int)->str:
-    """ 
-    Returns a sequence of random weapons for each clock change
-        Arguments:
-        shifts: will set the amount of turns (the lenght of the resulting string)
-        
-    
-    """
+def rand_clock(n: int)->str:
+    # must generate a string of 'n' 6 characters from 'weapons'
+    result = ""
+    for i in range(n):
+        print("")
+    return result 
 
-
-  
-    
-    # print("Hello, World!")
+def input_clock():
+    clock = input()
+    return clock
     
 def main():
+    # gather entries for 2 teams with input_weapon(), generates or input the clock and make the match comparisons to make the 
     print("Hello, World!")
     
 if __name__ == "__main__":
     # main()
-
-
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

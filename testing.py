@@ -10,7 +10,7 @@ class Test_selection_is_legal(unittest.TestCase):
 
     def test_invalid_selection(self):
         # Test an invalid selection
-        self.assertFalse(selection_is_legal('TWTMWM!'))  # Special character
+        self.assertFalse(selection_is_legal('TWTMWM!'))  # Special characte r
         self.assertFalse(selection_is_legal('TWTMWMN'))  # Extra character
         self.assertFalse(selection_is_legal(''))  # Empty selection
 

@@ -1,8 +1,10 @@
 # Challenge 1 — Pixel Gun Apocalypse 
 # Author : Fabián Andrés Cortés Tróchez
-# Date: 2024 - 03 - 12
+# Date: 2024 - 03 - 17
 
 import random
+import unittest
+from unittest.mock import patch
 random.seed(1997)
 
 weapons = list(".-+*TY|WXM") # Valid characters representing weapons
@@ -94,5 +96,51 @@ def match()-> str:
 #         string = "".join([letter for letter in output])
 #     return string   
 
+# Including testing units for match()
+
+class TestMatchFunction(unittest.TestCase):
+    @patch("builtins.input", side_effect=["+XMY*|", "+XWY.-", "WWX.-.+M-M||+..+XM|XM"])
+    def test_scenario_1(self, mock_input):
+        expected_output = "FFFFFFFFFFFFFFFFFFFFF"
+        self.assertEqual(match(), expected_output)
+    # So far, so good;
+    
+    @patch("builtins.input", side_effect=["+Y.X-|", "WMT*|-", "|*Y+-*|-|Y-X|+|YM-*T+-X-**W-XY"])
+    def test_scenario_2(self, mock_input):
+        expected_output = "≈F≈VV≈≈≈≈VVVVVVVVVVVVVVVVV≈≈VV"
+        self.assertEqual(match(), expected_output)
+    # It"s working; let"s build the remaining tests :D
+    
+    @patch("builtins.input", side_effect=["MX.+T", "+TX-W", "M-+.|M*++*Y-W+|M-|YXW."])
+    def test_scenario_3(self, mock_input):
+        expected_output = "V≈≈VVVVVVVVV≈≈≈V≈≈≈≈F≈"
+        self.assertEqual(match(), expected_output)
+
+    @patch("builtins.input", side_effect=["MX.+T", "+TX-W", "M-+.|M*++*Y-W+|M-|YXW."])
+    def test_scenario_4(self, mock_input):
+        expected_output = "V≈≈VVVVVVVVV≈≈≈V≈≈≈≈F≈"
+        self.assertEqual(match(), expected_output)
+
+    @patch("builtins.input", side_effect=["*W+|.", "-+TXY", "XW*|M+T*YXW+X*.+MW*|"])
+    def test_scenario_5(self, mock_input):
+        expected_output = "F≈VVVVVVV≈VV≈VVVVVVV"
+        self.assertEqual(match(), expected_output)
+
 if __name__ == "__main__":
-    match()
+    game = match()
+    print(game)
+    
+    # unittest.main(argv=["", "TestMatchFunction"], verbosity=2, exit=False)
+    
+    # (pixel) fcortesbio@aspire:~/Code/SENA/SENA-VEC-python/Pixel$ python3 main.py 
+    # test_scenario_1 (__main__.TestMatchFunction.test_scenario_1) ... ok
+    # test_scenario_2 (__main__.TestMatchFunction.test_scenario_2) ... ok
+    # test_scenario_3 (__main__.TestMatchFunction.test_scenario_3) ... ok
+    # test_scenario_4 (__main__.TestMatchFunction.test_scenario_4) ... ok
+    # test_scenario_5 (__main__.TestMatchFunction.test_scenario_5) ... ok
+
+    # ----------------------------------------------------------------------
+    # Ran 5 tests in 0.002s
+
+    # OK
+    

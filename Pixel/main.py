@@ -18,14 +18,14 @@ def get_weapon(strikes = 3)->str:
     try:
         while strikes > 0:
             string = input()
-            if len(string) == 6: # lenght must be 6
+            if len(string) in range(4,7): # lenght must be 6
                 if check_select(string): # input character validation
                     return string
                 else:
                     print("Selección inválida, intenta nuevamente.") # error message for illegal characters
                     strikes -= 1
             else:
-                print("Debes seleccionar 6 armas.") # error message for illegal lenght
+                print("Debes seleccionar de 5 a 6 armas.") # error message for illegal lenght
                 strikes -= 1
         raise ValueError("Too many invalid inputs.")
     except ValueError:
@@ -51,37 +51,48 @@ def get_clock()-> str:
         else:
             print("Selección inválida, por favor intenta nuevamente.")
 
-def report_score(V, F):
-    if V == F: 
-        return "≈"
-    elif V > F:
-        return "V"
-    else:
-        return "F" 
+def report_score(V, F): # adopting convention as in challenge document
+    return "≈" if V == F else ("V" if V > F else "F")
     
-def main() -> str:
-    # getting weapons for each team from inputs
-    print("Selecciona las armas para el Equipo 1")
-    team1_weapons = get_weapon()
-    print("Selecciona las armas para el Equipo 2")
-    team2_weapons = get_weapon()
-    # getting a clock from input, or generate 20 if Global random is True
-    clock = get_clock() if not random_mode else rand_clock(20)
+def match()-> str:
+    vg_weapons = get_weapon()
+    fs_weapons = get_weapon()
+    clock = get_clock()
     # define starting values for scores
-    score1 = 0
-    score2 = 0 
-    # empty list
-    output = [] 
-    # iterate on clock to get and report scores
-    for character in clock: # runs the following for each character in clock
-        if character in team1_weapons:
-            score1 += 1 # add 1 to score1 if this turn's character is in team1_weapons
-        if character in team2_weapons:
-            score2 += 1 # add 1 to score2 if this turn's character is in team2_weapons
-        output.append(report_score(score1, score2))
+    vg_score = 0
+    fs_score = 0 
+    output = [] # empty list
+    for effective_weapon in clock: 
+        if effective_weapon in vg_weapons:
+            vg_score += 1 # add 1 to score1 if this turn"s character is in team1_weapons
+        if effective_weapon in fs_weapons:
+            fs_score += 1 # I realized I had an increment of 2 instead of one; Vampires apparently had a huge handycap!!
+        output.append(report_score(vg_score, fs_score))
         string = "".join([letter for letter in output])
-    return string   
+    return string  
+ 
+# def main() -> str:
+#     # getting weapons for each team from inputs
+#     print("Selecciona las armas para el Equipo 1")
+#     team1_weapons = get_weapon()
+#     print("Selecciona las armas para el Equipo 2")
+#     team2_weapons = get_weapon()
+#     # getting a clock from input, or generate 20 if Global random is True
+#     clock = get_clock() if not random_mode else rand_clock(20)
+#     # define starting values for scores
+#     score1 = 0
+#     score2 = 0 
+#     # empty list
+#     output = [] 
+#     # iterate on clock to get and report scores
+#     for character in clock: # runs the following for each character in clock
+#         if character in team1_weapons:
+#             score1 += 1 # add 1 to score1 if this turn's character is in team1_weapons
+#         if character in team2_weapons:
+#             score2 += 2 # add 1 to score2 if this turn's character is in team2_weapons
+#         output.append(report_score(score1, score2))
+#         string = "".join([letter for letter in output])
+#     return string   
 
 if __name__ == "__main__":
-    match = main()
-    print(match)                                                                                                                                     
+    match()

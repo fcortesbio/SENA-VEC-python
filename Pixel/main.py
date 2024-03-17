@@ -52,7 +52,7 @@ def get_clock()-> str:
             print("Selección inválida, por favor intenta nuevamente.")
 
 def report_score(a, b):
-    return "≈" if a == b else ("F" if a < b else "V") # 
+    return "≈" if a == b else ("F" if a > b else "V")
 
 def main() -> str:
     # getting weapons for each team from inputs

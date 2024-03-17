@@ -1,6 +1,7 @@
 # Challenge 1 — Pixel Gun Apocalypse 
 # Author : Fabián Andrés Cortés Tróchez
 # Date: 2024 - 03 - 17
+# https://github.com/fcortesbio/SENA-VEC-python/blob/main/Pixel/main.py
 
 import random
 import unittest

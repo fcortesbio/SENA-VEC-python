@@ -51,9 +51,14 @@ def get_clock()-> str:
         else:
             print("Selección inválida, por favor intenta nuevamente.")
 
-def report_score(a, b):
-    return "≈" if a == b else ("F" if a > b else "V")
-
+def report_score(V, F):
+    if V == F: 
+        return "≈"
+    elif V > F:
+        return "V"
+    else:
+        return "F" 
+    
 def main() -> str:
     # getting weapons for each team from inputs
     print("Selecciona las armas para el Equipo 1")
@@ -62,13 +67,17 @@ def main() -> str:
     team2_weapons = get_weapon()
     # getting a clock from input, or generate 20 if Global random is True
     clock = get_clock() if not random_mode else rand_clock(20)
-    score1 = score2 = 0 # define starting values for scores
-    output = [] # empty list
+    # define starting values for scores
+    score1 = 0
+    score2 = 0 
+    # empty list
+    output = [] 
+    # iterate on clock to get and report scores
     for character in clock: # runs the following for each character in clock
         if character in team1_weapons:
             score1 += 1 # add 1 to score1 if this turn's character is in team1_weapons
         if character in team2_weapons:
-            score2 += 2 # add 1 to score2 if this turn's character is in team2_weapons
+            score2 += 1 # add 1 to score2 if this turn's character is in team2_weapons
         output.append(report_score(score1, score2))
         string = "".join([letter for letter in output])
     return string   

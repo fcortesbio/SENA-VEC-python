@@ -55,7 +55,6 @@ def main()-> None:
     
     attempts = 1  # counter of attempts starts in 1   
     lucky_number = random.choice(range(1,10))
-    print(lucky_number)
     
     print("Please enter a number between 1 to 10:")
     user_choice = get_number("", 1, 10)
